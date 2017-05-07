@@ -27,7 +27,24 @@ namespace User_Item {
                 }
             }
             return ratingData;
-
         }
+
+        public static Dictionary<int, Vector> DataToVectors(Dictionary<int, Dictionary<int, float>> ratingData) {
+            Dictionary<int, Vector> vectorDictionary = new Dictionary<int, Vector>();
+            for (int i = 1; i <= ratingData.Count; i++) {
+                List<float> ratings = new List<float>();
+                for (int j = 0; j < Program.ARTICLES.Length; j++) {
+                    if (!ratingData[i].ContainsKey(Program.ARTICLES[j])) {
+                        ratings.Add(0);
+                    }
+                    else {
+                        ratings.Add(ratingData[i][Program.ARTICLES[j]]);
+                    }
+                }
+                vectorDictionary.Add(i, new Vector(ratings.ToArray()));
+            }
+
+            return vectorDictionary;
+        } 
     }
 }

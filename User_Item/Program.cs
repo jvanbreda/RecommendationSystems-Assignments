@@ -13,6 +13,12 @@ namespace User_Item {
         static void Main(string[] args) {
             vectors = DataParser.DataToVectors(DataParser.ParseData());
             PrettyPrint();
+
+            UserItemRunner runner = new UserItemRunner(new PearsonCoefficient());
+            Console.WriteLine();
+            Console.WriteLine("Similarity: {0}", runner.Run(vectors[1], vectors[2]));
+            
+
             Console.Read();
         }
 

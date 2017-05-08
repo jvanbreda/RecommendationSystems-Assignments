@@ -32,16 +32,16 @@ namespace User_Item {
         public static Dictionary<int, Vector> DataToVectors(Dictionary<int, Dictionary<int, float>> ratingData) {
             Dictionary<int, Vector> vectorDictionary = new Dictionary<int, Vector>();
             for (int i = 1; i <= ratingData.Count; i++) {
-                List<float> ratings = new List<float>();
+                List<ArticleRating> ratings = new List<ArticleRating>();
                 for (int j = 0; j < Program.ARTICLES.Length; j++) {
                     if (!ratingData[i].ContainsKey(Program.ARTICLES[j])) {
-                        ratings.Add(0);
+                        ratings.Add(new ArticleRating(Program.ARTICLES[j], null));
                     }
                     else {
-                        ratings.Add(ratingData[i][Program.ARTICLES[j]]);
+                        ratings.Add(new ArticleRating(Program.ARTICLES[j], ratingData[i][Program.ARTICLES[j]]));
                     }
                 }
-                vectorDictionary.Add(i, new Vector(ratings.ToArray()));
+                vectorDictionary.Add(i, new Vector(ratings.OrderBy(x => x.ArticleId).ToArray()));
             }
 
             return vectorDictionary;

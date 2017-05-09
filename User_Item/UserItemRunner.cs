@@ -12,7 +12,7 @@ namespace User_Item {
             this.similarityCalculator = similarityCalculator;
         }
 
-        public float Run(Vector v1, Vector v2) {
+        public float CalculateSimilarity(Vector v1, Vector v2) {
             return similarityCalculator.CalculateSimilarity(v1, v2);
         }
     }

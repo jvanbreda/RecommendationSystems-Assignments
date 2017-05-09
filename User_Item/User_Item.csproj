@@ -42,22 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticleRating.cs" />
-    <Compile Include="CosineSimilarity.cs" />
+    <Compile Include="Algorithms.cs" />
+    <Compile Include="Models\ArticleRating.cs" />
+    <Compile Include="Models\Record.cs" />
+    <Compile Include="Predictor.cs" />
+    <Compile Include="Similarities\CosineSimilarity.cs" />
     <Compile Include="DataParser.cs" />
-    <Compile Include="DistanceBasedSimilarity.cs" />
-    <Compile Include="EuclideanSimilarity.cs" />
-    <Compile Include="ISimilarityCalculator.cs" />
-    <Compile Include="ManhattanSimilary.cs" />
-    <Compile Include="PearsonCoefficient.cs" />
+    <Compile Include="Similarities\DistanceBasedSimilarity.cs" />
+    <Compile Include="Similarities\EuclideanSimilarity.cs" />
+    <Compile Include="Similarities\ISimilarityCalculator.cs" />
+    <Compile Include="Similarities\ManhattanSimilary.cs" />
+    <Compile Include="Similarities\PearsonCoefficient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserItemRunner.cs" />
-    <Compile Include="Vector.cs" />
+    <Compile Include="Models\Vector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Testdata.data" />
+    <None Include="u.data" />
     <None Include="userItem.data" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

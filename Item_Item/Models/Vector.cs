@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace User_Item {
+namespace Item_Item {
     class Vector {
         public ArticleRating[] ArticleRatings { get; private set; }
         public int NumberOfRatings { get; set; }
@@ -17,7 +17,7 @@ namespace User_Item {
         private int GetNumberOfRatings() {
             int numberOfRatings = 0;
             for (int i = 0; i < ArticleRatings.Length; i++) {
-                if(ArticleRatings[i].Rating != null) {
+                if (ArticleRatings[i].Rating != null) {
                     numberOfRatings++;
                 }
             }
@@ -53,7 +53,7 @@ namespace User_Item {
                     resultString += "-\t";
             }
 
-            return resultString + "\t" + NumberOfRatings;
+            return resultString + "\t";
         }
        
     }

@@ -23,9 +23,11 @@ namespace User_Item {
                             n++;
                         }
                         else {
-                            nearestNeighbors.Remove(nearestNeighbors.OrderBy(x => x.Similarity).First());
-                            nearestNeighbors.Add(r);
-                            threshold = nearestNeighbors.Min(x => x.Similarity);
+                            if (r.V.NumberOfRatings > dataSet[targetUser].NumberOfRatings) {
+                                nearestNeighbors.Remove(nearestNeighbors.OrderBy(x => x.Similarity).First());
+                                nearestNeighbors.Add(r);
+                                threshold = nearestNeighbors.Min(x => x.Similarity);
+                            }
                         }
                     }
                 }

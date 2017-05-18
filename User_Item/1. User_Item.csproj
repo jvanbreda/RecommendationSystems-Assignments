@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Testdata.data" />
+    <None Include="testData.data" />
     <None Include="u.data" />
     <None Include="userItem.data" />
   </ItemGroup>

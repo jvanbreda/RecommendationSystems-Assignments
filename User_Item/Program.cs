@@ -7,38 +7,53 @@ using System.Threading.Tasks;
 namespace User_Item {
     class Program {
 
+        public static readonly string TEST_DATA = "../../testData.data";
         public static readonly string USER_DATA = "../../userItem.data";
         public static readonly string MOVIELENS_DATA = "../../u.data";
 
         private static Predictor predictor;
 
-
         static void Main(string[] args) {
             predictor = new Predictor(new PearsonCoefficient());
-
-            Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(USER_DATA));
-            PrettyPrint(vectors);
-            Console.WriteLine();
 
             int k = 3;
             float threshold = 0.35f;
 
-            int targetUser = 7;
-            int[] articlesToPredict = new int[] { 101, 103, 106 };
-
-            List<ArticleRating> results = predictor.PredictRatings(targetUser, k, threshold, vectors, articlesToPredict);
-            PrettyPrint(targetUser, results);
-
-            Console.WriteLine();
-
-            targetUser = 4;
-            articlesToPredict = new int[] { 101 };
-
-            results = predictor.PredictRatings(targetUser, k, threshold, vectors, articlesToPredict);
-            PrettyPrint(targetUser, results);
-
-            //Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(MOVIELENS_DATA));
+            //Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(TEST_DATA));
             //PrettyPrint(vectors);
+            //Console.WriteLine();
+
+            //Console.WriteLine("Euclidean: {0}", new EuclideanSimilarity().CalculateSimilarity(vectors[1], vectors[2]));
+            //Console.WriteLine("Manhattan: {0}", new ManhattanSimilary().CalculateSimilarity(vectors[1], vectors[2]));
+            //Console.WriteLine("Pearson: {0}", new PearsonCoefficient().CalculateSimilarity(vectors[1], vectors[2]));
+            //Console.WriteLine("Cosine: {0}", new CosineSimilarity().CalculateSimilarity(vectors[1], vectors[2]));
+
+            //Console.Read();
+
+            //Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(USER_DATA));
+            //PrettyPrint(vectors);
+            //Console.WriteLine();
+
+            //int targetUser = 7;
+            //int[] idsToPredict = new int[] { 101, 103 };
+
+            //List<ArticleRating> results = predictor.PredictRatings(targetUser, k, threshold, vectors, idsToPredict);
+            //PrettyPrint(targetUser, results);
+
+            //Console.WriteLine();
+
+            //int targetUser = 4;
+            //int[] idsToPredict = new int[] { 101 };
+
+            //List<ArticleRating> results = predictor.PredictRatings(targetUser, k, threshold, vectors, idsToPredict);
+            //PrettyPrint(targetUser, results);
+
+            Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(MOVIELENS_DATA));
+            int targetUser = 186;
+            int n = 8;
+
+            List<ArticleRating> topNratings = predictor.GetTopNpredictions(n, predictor.PredictRatings(targetUser, k, threshold, vectors, DataParser.ids.ToArray()));
+            PrettyPrint(targetUser, topNratings);
 
             Console.Read();
         }

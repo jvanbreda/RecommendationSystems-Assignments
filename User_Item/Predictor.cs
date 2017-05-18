@@ -38,5 +38,10 @@ namespace User_Item {
 
             return predictions;
         }
+
+        public List<ArticleRating> GetTopNpredictions(int n, List<ArticleRating> allPredictions) {
+            allPredictions = allPredictions.OrderByDescending(x => x.Rating).ToList();
+            return allPredictions.Take(n).ToList();
+        }
     }
 }

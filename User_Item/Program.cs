@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using User_Item.Models;
 
 namespace User_Item {
     class Program {
@@ -12,27 +13,25 @@ namespace User_Item {
         public static readonly string MOVIELENS_DATA = "../../u.data";
 
         private static Predictor predictor;
+        public static ISimilarityCalculator calculator;
 
         static void Main(string[] args) {
-            predictor = new Predictor(new PearsonCoefficient());
+            calculator = new PearsonCoefficient();
+            predictor = new Predictor(calculator);
 
             int k = 3;
             float threshold = 0.35f;
 
-            //Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(TEST_DATA));
-            //PrettyPrint(vectors);
-            //Console.WriteLine();
-
-            //Console.WriteLine("Euclidean: {0}", new EuclideanSimilarity().CalculateSimilarity(vectors[1], vectors[2]));
-            //Console.WriteLine("Manhattan: {0}", new ManhattanSimilary().CalculateSimilarity(vectors[1], vectors[2]));
-            //Console.WriteLine("Pearson: {0}", new PearsonCoefficient().CalculateSimilarity(vectors[1], vectors[2]));
-            //Console.WriteLine("Cosine: {0}", new CosineSimilarity().CalculateSimilarity(vectors[1], vectors[2]));
-
-            //Console.Read();
-
             //Dictionary<int, Vector> vectors = DataParser.DataToVectors(DataParser.ParseData(USER_DATA));
             //PrettyPrint(vectors);
             //Console.WriteLine();
+
+            //Console.WriteLine("Euclidean: {0}", new EuclideanSimilarity().CalculateSimilarity(vectors[3], vectors[4]));
+            //Console.WriteLine("Manhattan: {0}", new ManhattanSimilary().CalculateSimilarity(vectors[3], vectors[4]));
+            //Console.WriteLine("Pearson: {0}", new PearsonCoefficient().CalculateSimilarity(vectors[3], vectors[4]));
+            //Console.WriteLine("Cosine: {0}", new CosineSimilarity().CalculateSimilarity(vectors[3], vectors[4]));
+
+            //Console.Read();
 
             //int targetUser = 7;
             //int[] idsToPredict = new int[] { 101, 103 };

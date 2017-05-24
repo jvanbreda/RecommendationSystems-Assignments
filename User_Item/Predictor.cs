@@ -16,16 +16,15 @@ namespace User_Item {
 
         public List<ArticleRating> PredictRatings(int targetUser, int k, float threshold, Dictionary<int, Vector> dataSet, int[] articles) {
             List<Record> nearestNeighbors = Algorithms.NearestNeighbors(targetUser, dataSet, k, threshold, SimilarityCalculator);
-
-            float weightedRating = 0;
-            float totalSimilarity = 0;
-
+            
             List<ArticleRating> predictions = new List<ArticleRating>();
 
             for (int i = 0; i < articles.Length; i++) {
+                float weightedRating = 0;
+                float totalSimilarity = 0;
                 for (int j = 0; j < nearestNeighbors.Count; j++) {
-                    if (nearestNeighbors[j].V.ArticleRatings[i].Rating != null) {
-                        weightedRating += nearestNeighbors[j].Similarity * (float)nearestNeighbors[j].V.ArticleRatings[i].Rating;
+                    if (nearestNeighbors[j].V.ArticleRatings[DataParser.ids.IndexOf(articles[i])].Rating != null) {
+                        weightedRating += nearestNeighbors[j].Similarity * (float)nearestNeighbors[j].V.ArticleRatings[DataParser.ids.IndexOf(articles[i])].Rating;
                         totalSimilarity += nearestNeighbors[j].Similarity;
                     }
                 }

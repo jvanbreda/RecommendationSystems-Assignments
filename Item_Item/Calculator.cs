@@ -11,14 +11,20 @@ namespace Item_Item {
         public static DeviationModel ComputeDeviation(Dictionary<int, Vector> userRatings, int item1, int item2) {
             float numerator = 0;
             int denominator = 0;
-            for (int i = 1; i <= userRatings.Count; i++) {
-                float? item1Rating = userRatings[i].ArticleRatings.FirstOrDefault(x => x.ArticleId == item1).Rating;
-                float? item2Rating = userRatings[i].ArticleRatings.FirstOrDefault(x => x.ArticleId == item2).Rating;
+            int length = userRatings.Count;
+            for (int i = 1; i <= length; i++) {
+                float? item1Rating = userRatings[i].ArticleRatings[DataParser.ids.IndexOf(item1)].Rating;
 
-                if(!(item1Rating == null || item2Rating == null)) {
-                    numerator += ((float)item1Rating - (float)item2Rating);
-                    denominator++;
-                }
+                if (item1Rating == null)
+                    continue;
+
+                float? item2Rating = userRatings[i].ArticleRatings[DataParser.ids.IndexOf(item2)].Rating;
+
+                if (item2Rating == null)
+                    continue;
+
+                numerator += ((float)item1Rating - (float)item2Rating);
+                denominator++;
             }
 
             return new DeviationModel(numerator / denominator, denominator);

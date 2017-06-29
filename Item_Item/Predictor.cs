@@ -27,5 +27,10 @@ namespace Item_Item {
 
             return predictions;
         }
+
+        public static List<ArticleRating> GetTopNpredictions(int n, List<ArticleRating> allPredictions) {
+            allPredictions = allPredictions.OrderByDescending(x => x.Rating).ToList();
+            return allPredictions.Take(n).ToList();
+        }
     }
 }

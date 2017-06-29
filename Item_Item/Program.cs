@@ -12,16 +12,30 @@ namespace Item_Item {
         public static readonly string MOVIELENS_DATA = "../../u.data";
 
         static void Main(string[] args) {
-            int targetUser = 7;
-            int[] idsToPredict = new int[] { 101, 103, 106 };
+            //int targetUser = 7;
+            //int[] idsToPredict = new int[] { 101, 103, 106 };
 
-            Dictionary<int, Vector> userRatings = DataParser.DataToVectors(DataParser.ParseData(USER_DATA));
-            PrettyPrint(userRatings);
-            Console.WriteLine();
+            //Dictionary<int, Vector> userRatings = DataParser.DataToVectors(DataParser.ParseData(USER_DATA));
+            //PrettyPrint(userRatings);
+            //Console.WriteLine();
 
-            DeviationModel[,] deviations = DeviationModel.GetDeviationTable(userRatings);
+            //DeviationModel[,] deviations = DeviationMatrix.GetMatrix(userRatings);
+
+            //List<ArticleRating> predictedRatings = Predictor.PredictRatings(userRatings, deviations, targetUser, idsToPredict);
+
+            //PrettyPrint(targetUser, predictedRatings);
+
+            int n = 5;
+            int targetUser = 186;
+            int[] idsToPredict = { 1599, 1536, 1449, 1500, 1452 };
+
+            Dictionary<int, Vector> userRatings = DataParser.DataToVectors(DataParser.ParseData(MOVIELENS_DATA));
+
+            DeviationModel[,] deviations = DeviationMatrix.GetMatrix(userRatings);
 
             List<ArticleRating> predictedRatings = Predictor.PredictRatings(userRatings, deviations, targetUser, idsToPredict);
+
+            List<ArticleRating> topNratings = Predictor.GetTopNpredictions(n, predictedRatings);
 
             PrettyPrint(targetUser, predictedRatings);
 

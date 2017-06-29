@@ -45,6 +45,7 @@
     <Compile Include="Calculator.cs" />
     <Compile Include="DataParser.cs" />
     <Compile Include="Models\ArticleRating.cs" />
+    <Compile Include="Models\DeviationMatrix.cs" />
     <Compile Include="Models\DeviationModel.cs" />
     <Compile Include="Models\Vector.cs" />
     <Compile Include="Predictor.cs" />
